@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #EFF3F6;
+            background-image: url(mih.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .box{
+            height: 20px;
+            width: 20px;
+            background-color: #4CAF50;
+            border-radius: 100%;
+            display: none;
+            position: relative;
+            top: 100px;
+            left: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+<div class="container">
+    <h1>Order Confirmation</h1>
+    <p id="orderMessage">Processing...</p>
+    <button class="btn" onclick="changeMessage()">Click to Confirm</button>
+</div>
+
+<script>
+    function changeMessage() {
+        // Dynamically change the message after the button is clicked
+        document.getElementById("orderMessage").innerText = "Your order has been placed!";
+        setTimeout(reto,3000)
+    }
+
+    function nodex(){
+        a=document.getElementsByClassName("box")
+        a[0].style.display="block"
+    }
+
+
+    function reto() {
+        location.href = "Home.html";
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="Cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Sacramento' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Sora' rel='stylesheet'>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="Navbar">
+        <!-- <div style="height: 10px;
+         width: 10px; border-radius: 100%;
+         background-color: greenyellow; 
+         position: relative; left: 1530px; top: 40px;" class="nodex">
+         </div> -->
+        <div class="icon">
+            <a href="Home.html">
+                <h1 style="    font-family: 'Sacramento';font-size: 50px; ">Hapilm</h1>
+            </a>
+        </div>
+        <div class="search">
+            <input type="search" class="ser" placeholder="Search">
+            <!-- <button class="btn" type="submit"></button> -->
+            <div class="btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+            
+        </div>
+        <div class="options">
+            <div class="Opt"><i class="fa-solid fa-cart-shopping"></i></div>
+            <div class="Opt"><i class="fa-solid fa-bell"></i></div>
+            <div class="Opt"><i class="fa-solid fa-user"></i></div>
+        </div>
+    </div>
+    <div class="Cbody">
+        <h1>Shopping bag</h1>
+        <span style="font-family: 'Sora'; font-size: 15px; font-weight: bold; opacity: 60%; position: absolute; top: 65px; left:63px;">2 Items</span>
+        <span style="font-family: 'Sora'; font-size: 15px; font-weight: bold; position: absolute; top: 65px; left:123px;">In the bag</span>
+
+        <div class="cart-container">
+            <h1 class="tag">Product</h1>
+            <h1 class="tag">Price</h1>
+            <h1 class="tag">Quantity</h1>
+            <h1 class="tag">Total Price</h1>
+            <div id="cartItems"></div>
+            <!-- <h2 id="total"></h2> -->
+        </div>
+        <div class="FinalEX">
+            <h1>Calculate Shipping</h1>
+            <div class="Iform">
+                <form action="">
+                    <table >
+                        <tr>
+                            <td colspan="2">
+                                <select name="" id="" class="S1">
+                                    <option value="">country</option>
+                                    <option value="INDIA">INDIA</option>
+                                    <option value="USA">USA</option>
+                                    <option value="FRANCE">FRANCE</option>
+                                    <option value="UK">UK</option>
+                                    <option value="RUSSIA">RUSSIA</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="" id="" class="S2">
+                                    <option value="">Sate / City</option>
+                                    <option value="KERALA">KERALA</option>
+                                    <option value="TAMIL NADU">TAMIL NADU</option>
+                                    <option value="KARNADAKA">KARNADAKA</option>
+                                    <option value="GOA">GOA</option>
+
+                                </select>
+                            </td>
+                            <td><input type="text" class="N1" placeholder="PINCODE"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><textarea name="" id="" placeholder="Address"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button class="update">Update</button></td>
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+            <div class="Cart-total">
+                <h1>Cart Total</h1>
+                <li>Cart subtotal:</li>
+                <li>Deliver charge:</li>
+                <li>Discount:</li>
+                <h2>Cart Total:</h2>
+                <h2 class="pricex" id="total">26998</h2>
+
+                <a href="Confirm.html" style="color: black;"><div class="Apply">Place Order</div></a>
+            </div>
+        </div>
+
+    </div>
+        
+
+
+    <script>
+        function getCartItems() {
+            return JSON.parse(localStorage.getItem("cart")) || [];
+        }
+
+        function saveCartItems(cart) {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        function renderCart() {
+            const cartItemsContainer = document.getElementById("cartItems");
+            cartItemsContainer.innerHTML = "";
+            const cart = getCartItems();
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+
+                const cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <h3>${item.name}</h3>
+                    </div>
+                    <p class="n1">${item.price}</p>
+                    <p class="n2">${item.price * item.quantity}</p>
+
+
+                    <div class="cart-item-controls">
+                        <button onclick="decreaseQuantity(${index})">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="increaseQuantity(${index})">+</button>
+                    </div>
+                    <button onclick="removeItem(${index})" class="del"><i class="fa-solid fa-trash"></i></button>
+
+
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            document.getElementById("total").innerText = `${total}`;
+            nodex()
+        }
+
+        function increaseQuantity(index) {
+            const cart = getCartItems();
+            cart[index].quantity += 1;
+            saveCartItems(cart);
+            renderCart();
+            nodex()
+        }
+
+        function decreaseQuantity(index) {
+            const cart = getCartItems();
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1); // Remove item if quantity is 1
+            }
+            saveCartItems(cart);
+            renderCart();
+            nodex()
+        }
+
+        function removeItem(index) {
+            const cart = getCartItems();
+            cart.splice(index, 1);
+            saveCartItems(cart);
+            renderCart();
+            nodex();
+        }
+
+        document.addEventListener("DOMContentLoaded", renderCart);
+
+
+
+        function nodex(){
+            non=document.getElementsByClassName('cart-item')
+            nox=document.getElementsByTagName('span')[0]
+            console.log(nox)
+            let count=0
+            for(let i=0;i<non.length;i++){
+                count+=1
+            }
+            nox.innerText=`${count} Items`
+        }
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Sacramento' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Sora' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="Navbar">
+        <div class="icon">
+            <a href="Home.html">
+                <h1 style="    font-family: 'Sacramento';font-size: 50px; ">Hapilm</h1>
+            </a>
+        </div>
+        <div class="search">
+            <input type="search" class="ser" placeholder="Search">
+            <!-- <button class="btn" type="submit"></button> -->
+            <div class="btn"><i class="fa-solid fa-magnifying-glass"></i></div>
+            
+        </div>
+        <div class="options">
+            <a href="Cart.html"><div class="Opt"><i class="fa-solid fa-cart-shopping"></i></div></a>
+            <div class="Opt"><i class="fa-solid fa-bell"></i></div>
+            <div class="Opt"><i class="fa-solid fa-user"></i></div>
+        </div>
+    </div>
+    <div class="Ibody">
+        <div class="Simg">
+            <div class="s1"><img src="img4.1.jpg" alt=""></div>
+            <div class="s1"><img src="img4.2.jpg" alt=""></div>
+            <div class="s1"><img src="img4.3.jpg" alt=""></div>
+            <div class="s1"><img src="img4.4.jpg" alt=""></div>
+        </div>
+        <div class="Iimg">
+            <img src="Img/img4.jpg" alt="" id="M1">
+        </div>
+        <div class="Iname"><h1>Nike Running Shoes Men M Air Zoom</h1></div>
+        
+
+        <div class="Iprice"><h2>₹ 9999</h2></div>
+        <div class="Isize">
+            <h1>Size</h1>
+            <div class="Sizeselect">
+                <div><h3>S</h3></div>
+                <div><h3>M</h3></div>
+                <div><h3>L</h3></div>
+                <div><h3>XL</h3></div>    
+            </div>
+
+        </div>
+        <div class="Qty">
+            <button onclick="qdn()">-</button>
+            <h3>1</h3>
+            <button onclick="qup()">+</button>
+
+        </div>
+
+        <div class="Addcart"><h1>ADD TO CART</h1></div>
+        <hr size="1" width="590px" class="hr1" color="black">
+        <div class="Return">
+            <h3>Return</h3>
+            <h4>You have <b>60 days</b> to return the item(s) using any of the following methods:</h4>
+            <ul>
+                <li>Free store return</li>
+                <li>Free Delivery</li>
+            </ul>
+        </div>
+        <hr size="1" class="hr2" width="1127px" color="black">
+
+        <h2 class="pro-dtl">Product details</h2>
+        <div class="pro-dtl-div">
+            <ul>
+                <li>Product Dimensions  : 34 x 23 x 16 cm; 500 g</li>
+                <li>Date First Available  : 31 January 2024</li>
+                <li>Manufacturer  : NIKE INDIA PVT LTD</li>
+                <li>ASIN  : B0CTMVPDXD</li>
+                <li>Item model number  : DX9012-007</li>
+                <li>Department  : mens</li>
+                <li>Manufacturer  : NIKE INDIA PVT LTD, NIKE INDIA PVT LTD,GROUND & 1ST FLOOR OLYMPIA BUILDING,NO 66/1 BAGMANE TECH PARK,CV RAMAN NAGAR BANGALORE-560093 INDIA</li>
+                <li>Packer  : NIKE INDIA PVT LTD,GROUND & 1ST FLOOR OLYMPIA BUILDING,NO 66/1 BAGMANE TECH PARK,CV RAMAN NAGAR BANGALORE-560093 INDIA</li>
+                <li>Importer  : NIKE INDIA PVT LTD,GROUND & 1ST FLOOR OLYMPIA BUILDING,NO 66/1 BAGMANE TECH PARK,CV RAMAN NAGAR BANGALORE-560093 INDIA</li>
+                <li>Item Weight  : 500 g</li>
+                <li>Item Dimensions LxWxH  : 34 x 23 x 16 Centimeters</li>
+                <li>Generic Name  : Running</li>
+            </ul>
+        </div>
+
+        <hr size="1" class="hr3" width="1127px" color="black">
+        <h2 class="pro-desc">Product description</h2>
+        <h3 class="pro-desc-txt">Designed for comfortable wear for sports and street style, NIKE is always fun to wear. Upgrade in style with a wide range from the world’s leading and much-loved sports brand, NIKE.</h3>
+        <hr size="1" class="hr-ver" width="1535px" color="black">
+
+        
+
+    </div>
+    <script>
+         function getCartItems() {
+            return JSON.parse(localStorage.getItem("cart")) || [];
+        }
+
+        // Function to save cart items to localStorage
+        function saveCartItems(cart) {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        // Function to add item to cart
+        function addToCart() {
+            const product = {
+                name: "Nike Running Shoes Men M Air Zoom",
+                price: 9999,
+                image: "Img/img4.jpg",
+                quantity: 1
+            };
+
+            let cart = getCartItems();
+
+            // Check if the product already exists in the cart
+            const existingProduct = cart.find(item => item.name === product.name);
+            if (existingProduct) {
+                // Increase the quantity if already in cart
+                existingProduct.quantity += 1;
+            } else {
+                // Add new product to cart
+                cart.push(product);
+            }
+
+            saveCartItems(cart);
+            alert("Product added to cart!");
+        }
+
+        // Attach the addToCart function to the button click
+        document.querySelector(".Addcart").addEventListener("click", addToCart);
+
+        a = document.getElementById("M1")
+        b = document.getElementsByClassName("s1")
+            b[0].addEventListener("mouseover", function(){
+                a.src="img4.1.jpg"
+            })
+            b[1].addEventListener("mouseover", function(){
+                a.src="img4.2.jpg"
+            })
+            b[2].addEventListener("mouseover", function(){
+                a.src="img4.3.jpg"
+            })
+            b[3].addEventListener("mouseover", function(){
+                a.src="img4.4.jpg"
+            })
+
+
+            q=document.getElementsByTagName("h3")
+            p=document.getElementsByTagName("h2")
+            var count=1
+
+            console.log(q);
+            console.log(p);
+            function qup(){
+                count++
+                q[4].innerHTML=count
+                return
+
+            }
+            function qdn(){
+                count--
+                q[4].innerHTML=count
+                return
+
+            }
+
+
+
+
+        
+            
+        
+    </script>
+    
+</body>
+</html>
